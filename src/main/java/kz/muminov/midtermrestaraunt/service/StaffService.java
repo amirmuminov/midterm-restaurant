@@ -39,6 +39,7 @@ public class StaffService {
         System.out.println("Affected rows: " + affectedRows);
     }
 
+    //Print staff member's info and his salary
     public void calculateStaffMemberSalary(Date date, Long id){
         for (Staff staff: staffDAO.calculateSalary(id, date)) {
             System.out.println("Id: " + staff.getId());

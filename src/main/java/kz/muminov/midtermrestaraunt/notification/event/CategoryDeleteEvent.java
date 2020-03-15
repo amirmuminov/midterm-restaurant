@@ -2,6 +2,7 @@ package kz.muminov.midtermrestaraunt.notification.event;
 
 import org.springframework.context.ApplicationEvent;
 
+//Event when category is deleted which receives id and source
 public class CategoryDeleteEvent extends ApplicationEvent {
 
     private Long id;

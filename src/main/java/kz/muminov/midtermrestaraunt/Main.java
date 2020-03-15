@@ -15,19 +15,24 @@ public class Main {
         Scanner in = new Scanner(System.in);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
+        //Getting controllers from the context
         PositionController positionController = context.getBean("positionController", PositionController.class);
         StaffController staffController = context.getBean("staffController", StaffController.class);
         CategoryController categoryController = context.getBean("categoryController", CategoryController.class);
         MealController mealController = context.getBean("mealController", MealController.class);
-
+        //Call method which shows entity on which you want to perform some actions
         showMenu();
+        //Choose the entity
         int choice = in.nextInt();
 
         while(choice != 0){
             switch (choice){
                 case 1:
+                    //Call method which shows controller's menu
                     positionController.showMenu();
+                    //User inputs number depending on operation he would like to perform
                     int controllerMenuChoice = in.nextInt();
+                    //Passing user's choice to the controller's method which is responsible for handling user's choice
                     positionController.choice(controllerMenuChoice);
                     break;
                 case 2:

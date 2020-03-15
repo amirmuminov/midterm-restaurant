@@ -5,10 +5,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.sql.DriverManager;
 
 @Component
 public class DatabaseConnection {
+    //Assigning values from the application.properties file
     @Value("${database.url}")
     private String url;
     @Value("${database.username}")
@@ -20,6 +20,7 @@ public class DatabaseConnection {
 
     private DriverManagerDataSource driverManagerDataSource;
 
+    //Post construct method for initializing connection to the database
     @PostConstruct
     public void init(){
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();

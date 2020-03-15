@@ -24,6 +24,7 @@ public class StaffDAO implements ApplicationEventPublisherAware {
     private final String DELETE_STAFF_MEMBER = "DELETE FROM staff WHERE id = ?";
     private final String INSERT_NEW_STAFF_MEMBER = "INSERT INTO staff(first_name, last_name, age, position_id, hire_date, base_salary)" +
                                                     "VALUES (?, ?, ?, ?, ?, ?)";
+    //Query for calculating staff member's salary depending on his position and day
     private final String CALCULATE_SALARY_FOR_EMPLOYEE =    "SELECT\n" +
                                                             "       s.id,\n" +
                                                             "       first_name,\n" +
@@ -48,6 +49,7 @@ public class StaffDAO implements ApplicationEventPublisherAware {
     }
 
     public int deleteStaffMember(Long id) {
+        //Publish event when staff member was deleted
         eventPublisher.publishEvent(new StaffDeleteEvent(this, id));
         return jdbcTemplate.update(DELETE_STAFF_MEMBER, id);
     }

@@ -4,6 +4,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+
+//Configuration class
 @Configuration
 @ComponentScan("kz.muminov.midtermrestaraunt")
 @PropertySource("application.properties")

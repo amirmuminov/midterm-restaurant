@@ -18,8 +18,11 @@ public class PositionDAO implements ApplicationEventPublisherAware {
     private ApplicationEventPublisher eventPublisher;
     private JdbcTemplate jdbcTemplate;
 
+    //Insert new category
     private final String INSERT_INTO_POSITION = "INSERT INTO position(name) VALUES (?)";
+    //Delete category
     private final String DELETE_POSITION = "DELETE FROM position WHERE id = ?";
+    //Get all categories
     private final String GET_ALL_POSITIONS = "SELECT id, name FROM position";
 
     @Autowired

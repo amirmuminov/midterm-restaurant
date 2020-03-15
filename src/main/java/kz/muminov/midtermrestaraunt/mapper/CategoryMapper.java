@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//Class for mapping rows in result set to entity
 @Component
 public class CategoryMapper implements RowMapper<Category> {
     @Override

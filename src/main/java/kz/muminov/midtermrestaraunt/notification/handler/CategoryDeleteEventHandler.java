@@ -4,6 +4,7 @@ import kz.muminov.midtermrestaraunt.notification.event.CategoryDeleteEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+//Class for handling category delete event
 @Component
 public class CategoryDeleteEventHandler implements ApplicationListener<CategoryDeleteEvent> {
 

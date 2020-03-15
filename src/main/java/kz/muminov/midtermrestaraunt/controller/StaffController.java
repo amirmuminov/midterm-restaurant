@@ -18,6 +18,7 @@ public class StaffController {
     private StaffService staffService;
     private PositionController positionController;
 
+    //Injecting position controller in case to be able to add position for the new staff member
     @Autowired
     public StaffController(StaffService staffService, PositionController positionController){
         this.staffService = staffService;
@@ -60,8 +61,10 @@ public class StaffController {
         positionController.getAllPosition();
         System.out.println("Position id: ");
         Long positionId = in.nextLong();
+        //Inserting date in the following format
         System.out.println("Hire date (format: 'yyyy-mm-dd'): ");
         String date = in.next();
+        //Format for the date
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date hireDate = null;
         try {
@@ -78,6 +81,7 @@ public class StaffController {
         staffService.createStaffMember(staff);
     }
 
+    //Calculate staff member's salary on certain day
     public void calculateStaffMemberSalary(){
         System.out.println("Date (format: 'yyyy-mm-dd'): ");
         String date = in.next();
