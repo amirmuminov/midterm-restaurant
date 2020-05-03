@@ -1,35 +1,25 @@
 package kz.muminov.midtermrestaraunt.service;
 
-import kz.muminov.midtermrestaraunt.dao.CategoryDAO;
 import kz.muminov.midtermrestaraunt.entity.Category;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import kz.muminov.midtermrestaraunt.repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.List;
+
+@Service
 public class CategoryService {
 
-    private CategoryDAO categoryDAO;
+    private final CategoryRepository categoryRepository;
 
-    @Autowired
-    public CategoryService(CategoryDAO categoryDAO) {
-        this.categoryDAO = categoryDAO;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
-    public void createCategory(Category category){
-        int affectedRows = categoryDAO.createCategory(category);
-        System.out.println("Affected rows: " + affectedRows);
+    public List<Category> getCategories(){
+        return categoryRepository.findAll();
     }
 
-    public void deleteCategory(Long id){
-        int affectedRows = categoryDAO.deleteCategory(id);
-        System.out.println("Affected rows: " + affectedRows);
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
     }
-
-    public void getAllCategories(){
-        for (Category category: categoryDAO.getAllCategories()){
-            System.out.println(category.getId() + ". " + category.getName());
-        }
-        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-    }
-
 }

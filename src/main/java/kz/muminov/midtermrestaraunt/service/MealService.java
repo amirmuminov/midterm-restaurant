@@ -1,38 +1,32 @@
 package kz.muminov.midtermrestaraunt.service;
 
-import kz.muminov.midtermrestaraunt.dao.MealDAO;
 import kz.muminov.midtermrestaraunt.entity.Meal;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import kz.muminov.midtermrestaraunt.repository.MealRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class MealService {
 
-    private MealDAO mealDAO;
+    private final MealRepository mealRepository;
 
-    @Autowired
-    public MealService(MealDAO mealDAO){
-        this.mealDAO = mealDAO;
+    public MealService(MealRepository mealRepository) {
+        this.mealRepository = mealRepository;
     }
 
-    public void deleteMeal(Long id){
-        int affectedRows = mealDAO.deleteMeal(id);
-        System.out.println("Affected rows: " + affectedRows);
+    public List<Meal> getMeals(){
+        return mealRepository.findAll();
     }
 
-    public void createMeal(Meal meal){
-        int affectedRows = mealDAO.createMeal(meal);
-        System.out.println("Affected rows: " + affectedRows);
+    public Meal getMealById(Long id){
+        Optional<Meal> meal = mealRepository.findById(id);
+        return meal.orElse(null);
     }
 
-    public void getAllMeals(){
-        for(Meal meal: mealDAO.getAllMeals()){
-            System.out.println("Id: " + meal.getId());
-            System.out.println("Name: " + meal.getName());
-            System.out.println("Price: " + meal.getPrice());
-            System.out.println("Category: " + meal.getCategory().getName());
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - - -");
-        }
+    public Meal saveMeal(Meal meal){
+        return mealRepository.save(meal);
     }
 
 }

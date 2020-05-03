@@ -1,53 +1,42 @@
 package kz.muminov.midtermrestaraunt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Data
+@ApiModel(value = "Meal")
+@NoArgsConstructor
 public class Meal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NonNull
     private String name;
+
+    @NonNull
     private float price;
+
+    @NonNull
+    @Column(name = "category_id")
+    @JsonIgnore
+    private Long categoryId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
-    public Meal(Long id, String name, float price, Category category) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
+    @ManyToMany(mappedBy = "meals", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Order> orders = new ArrayList<>();
 
-    public Meal(String name, float price, Category category) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
