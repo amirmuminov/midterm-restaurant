@@ -4,6 +4,8 @@ import kz.muminov.midtermrestaraunt.entity.Role;
 import kz.muminov.midtermrestaraunt.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleService {
 
@@ -15,6 +17,10 @@ public class RoleService {
 
     public Role getRoleById(Long id){
         return roleRepository.findById(id).orElse(null);
+    }
+
+    public List<Role> getRoles(){
+        return roleRepository.findAll();
     }
 
 }

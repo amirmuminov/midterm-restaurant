@@ -32,7 +32,7 @@ public class OrderController {
         return orderService.createOrder(order);
     }
 
-    @PutMapping("/{orderId}/{mealId}")
+    @PutMapping("/{orderId}/meal/{mealId}")
     @ApiOperation(value = "Add a new meal to the existing order", response = Order.class)
     public Order addMealToOrder(
             @ApiParam(value = "ID to find the order") @PathVariable Long orderId,

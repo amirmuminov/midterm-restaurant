@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/meal")
+@CrossOrigin(origins = "http://localhost:3000")
 @Api(value = "Meal management system")
 public class MealController {
 

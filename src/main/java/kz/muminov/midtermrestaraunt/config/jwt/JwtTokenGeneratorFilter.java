@@ -50,6 +50,7 @@ public class JwtTokenGeneratorFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         long now = System.currentTimeMillis();
+        User user = (User) authResult.getPrincipal();
         String token = Jwts.builder()
                 .setSubject(authResult.getName())
                 .setIssuedAt(new Date(now))
@@ -57,6 +58,7 @@ public class JwtTokenGeneratorFilter extends UsernamePasswordAuthenticationFilte
                 .signWith(SignatureAlgorithm.HS512, "secret".getBytes())
                 .claim("authorities", authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
+                .claim("user_id", user.getId())
                 .compact();
 
 

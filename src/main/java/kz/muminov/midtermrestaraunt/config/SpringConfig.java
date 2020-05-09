@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 public class SpringConfig extends WebSecurityConfigurerAdapter {
@@ -25,17 +26,23 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
                 .authorizeRequests()
+                .antMatchers("/role").permitAll()
                 .antMatchers("/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/stock").permitAll()
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
-                .antMatchers("/user/**").hasAuthority("ADMINISTRATOR")
+                .antMatchers(HttpMethod.GET,"/user").hasAuthority("ADMINISTRATOR")
+                .antMatchers(HttpMethod.PUT,"/user").hasAuthority("ADMINISTRATOR")
+                .antMatchers(HttpMethod.DELETE,"/user").hasAuthority("ADMINISTRATOR")
                 .antMatchers("/category").hasAuthority("ADMINISTRATOR")
                 .antMatchers(HttpMethod.GET, "/meal/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/meal").hasAuthority("ADMINISTRATOR")
-                .antMatchers(HttpMethod.GET,"/order").hasAuthority("ADMINISTRATOR")
-                .antMatchers( "/order", "/order/**").hasAuthority("WAITER")
+                .antMatchers(HttpMethod.GET,"/order").hasAnyAuthority("ADMINISTRATOR", "WAITER")
+                .antMatchers( HttpMethod.POST, "/order", "/order/**").hasAuthority("WAITER")
+                .antMatchers( HttpMethod.PUT, "/order", "/order/**").hasAuthority("WAITER")
                 .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs", "/webjars/**").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtTokenGeneratorFilter(authenticationManager()))
                 .addFilterAfter(new JwtTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

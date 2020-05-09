@@ -8,7 +8,9 @@ import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -31,6 +33,9 @@ public class Meal {
     @JsonIgnore
     private Long categoryId;
 
+    @NonNull
+    private String imageLink;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
@@ -38,5 +43,9 @@ public class Meal {
     @ManyToMany(mappedBy = "meals", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "meals", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Stock> stocks = new HashSet<>();
 
 }
