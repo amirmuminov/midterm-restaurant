@@ -53,6 +53,5 @@ This class describes stock - beginning and ending dates, description, meals part
 
 ### StockCategory 
 This class describes the stock category.
->>>>>>> 513bcfdf8755e70db57ec344314725ef04b5691c
   
   
