@@ -1,32 +1,35 @@
 # midterm-restaurant
 
-This application is restaurant management system.
+## Restaurant management system.
 
-*dfsd*
+Project contains the following entitites:
 
-There are the following entities in the database:
-  - Staff
-  - Position (staff's position)
-  - Meal 
-  - Category (meal's category)
-  - Income
-  
-  Administrator is able to:
-  - Add new staff member
-  - Delete staff member
-  - Print all staff members' info
-  - Calculate staff's salary depending on their position ( waiters recieve 10% of daily restaurant income addiotionally to their based salary )
-  - Add new position
-  - Delete position
-  - Print all positions 
-  - Add new category
-  - Delete category
-  - Print all categories
-  - Add new meal
-  - Delete meal
-  - Print all meals
-  
-  
-  Also there are notifications which are triggered when meal, position, category or staff member are deleted.
+* MealCategory
+* Meal
+* Order
+* Role (User's role)
+* User
+* Stock
+* StockCategory
+
+### MealCategory
+This class describes the meal category
+
+### Meal
+This class describes the meal
+
+#### Functionality:
+* Get all meals
+* Get one meal by id
+* Save meal
+
+### Order
+This class describes the order. Only users with "WAITER" role have access to all operations with Order entity. Users with "ADMINISTRATOR" role has read only access.
+
+#### Functionality:
+* Get all orders
+* Save order
+* Add meal to the open order
+* Close order and get bill
   
   
