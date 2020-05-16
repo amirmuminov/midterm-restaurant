@@ -35,6 +35,10 @@ public class Stock {
     @NonNull
     private String imageLink;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "stock_category_id")
+    private StockCategory stockCategory;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "stock_meals",
                 joinColumns = {@JoinColumn(name = "stock_id", referencedColumnName = "id")},
