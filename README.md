@@ -1,6 +1,9 @@
 # midterm-restaurant
 
-This application is restaurant management system. The system is based on dayly wage. There are staff in restaurant, each staff has the position. Also, there are meals and each meal has the own category ( e.x. vegetarian ). 
+This application is restaurant management system.
+
+*dfsd*
+
 There are the following entities in the database:
   - Staff
   - Position (staff's position)
