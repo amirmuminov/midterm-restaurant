@@ -1,11 +1,11 @@
 # midterm-restaurant
 
-This application is restaurant management system. The system is based on dayly wage. There are staff in restaurant, each staff has the position. Also, there are meals and each meal has the own category ( e.x. vegetarian ). 
+This application is restaurant management system. The system is based on dayly wage. There are staff in restaurant, each staff has the position. Also, there are meals and each meal has the own mealCategory ( e.x. vegetarian ). 
 There are the following entities in the database:
   - Staff
   - Position (staff's position)
   - Meal 
-  - Category (meal's category)
+  - Category (meal's mealCategory)
   - Income
   
   Administrator is able to:
@@ -16,14 +16,14 @@ There are the following entities in the database:
   - Add new position
   - Delete position
   - Print all positions 
-  - Add new category
-  - Delete category
+  - Add new mealCategory
+  - Delete mealCategory
   - Print all categories
   - Add new meal
   - Delete meal
   - Print all meals
   
   
-  Also there are notifications which are triggered when meal, position, category or staff member are deleted.
+  Also there are notifications which are triggered when meal, position, mealCategory or staff member are deleted.
   
   

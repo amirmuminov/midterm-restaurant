@@ -14,7 +14,7 @@ import java.util.List;
 @ApiModel(value = "Meal category")
 @Data
 @NoArgsConstructor
-public class Category {
+public class MealCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
