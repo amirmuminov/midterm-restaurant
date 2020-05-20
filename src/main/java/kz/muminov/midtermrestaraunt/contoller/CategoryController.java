@@ -3,7 +3,7 @@ package kz.muminov.midtermrestaraunt.contoller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import kz.muminov.midtermrestaraunt.entity.MealCategory;
+import kz.muminov.midtermrestaraunt.entity.Category;
 import kz.muminov.midtermrestaraunt.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +22,13 @@ public class CategoryController {
 
     @GetMapping("")
     @ApiOperation(value = "Get all categories", response = List.class)
-    public List<MealCategory> getCategories(){
+    public List<Category> getCategories(){
         return categoryService.getCategories();
     }
 
     @PostMapping("")
-    @ApiOperation(value = "Save category into the database", response = MealCategory.class)
-    public MealCategory saveCategory(@ApiParam(value = "Object to be saved into the database") @RequestBody MealCategory mealCategory){
+    @ApiOperation(value = "Save category into the database", response = Category.class)
+    public Category saveCategory(@ApiParam(value = "Object to be saved into the database") @RequestBody Category mealCategory){
         return categoryService.saveCategory(mealCategory);
     }
 

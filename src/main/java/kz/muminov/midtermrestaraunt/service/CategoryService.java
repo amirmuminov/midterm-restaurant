@@ -1,6 +1,6 @@
 package kz.muminov.midtermrestaraunt.service;
 
-import kz.muminov.midtermrestaraunt.entity.MealCategory;
+import kz.muminov.midtermrestaraunt.entity.Category;
 import kz.muminov.midtermrestaraunt.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<MealCategory> getCategories(){
+    public List<Category> getCategories(){
         return categoryRepository.findAll();
     }
 
-    public MealCategory saveCategory(MealCategory mealCategory) {
+    public Category saveCategory(Category mealCategory) {
         return categoryRepository.save(mealCategory);
     }
 }

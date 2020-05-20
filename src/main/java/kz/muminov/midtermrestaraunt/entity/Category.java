@@ -14,7 +14,7 @@ import java.util.List;
 @ApiModel(value = "Meal category")
 @Data
 @NoArgsConstructor
-public class MealCategory {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class MealCategory {
     @NonNull
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "mealCategory")
     @JsonIgnore
     private List<Meal> meals = new ArrayList<>();
 

@@ -38,7 +38,7 @@ public class Meal {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private MealCategory mealCategory;
+    private Category mealCategory;
 
     @ManyToMany(mappedBy = "meals", fetch = FetchType.EAGER)
     @JsonIgnore
